@@ -1,4 +1,4 @@
-package utility;
+package com.utility;
 
 import java.sql.*;
 import java.util.*;
@@ -12,9 +12,9 @@ public class DB_Utility {
 
     public static void createConnection() {
 
-        String url = ConfigurationReader.getProperty("hr.database.url");
-        String username = ConfigurationReader.getProperty("hr.database.username");
-        String password = ConfigurationReader.getProperty("hr.database.password");
+        String url = ConfigurationReader.getProperty("url");
+        String username = ConfigurationReader.getProperty("username");
+        String password = ConfigurationReader.getProperty("password");
 
         try {
             conn = DriverManager.getConnection(url, username, password);

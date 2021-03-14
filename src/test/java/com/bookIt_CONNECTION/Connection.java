@@ -1,8 +1,8 @@
-package BookIT;
+package com.bookIt_CONNECTION;
 
 
-import utility.ConfigurationReader;
-import utility.DB_Utility;
+import com.utility.ConfigurationReader;
+import com.utility.DB_Utility;
 
 
 
