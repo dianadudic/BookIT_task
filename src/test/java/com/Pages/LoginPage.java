@@ -1,5 +1,7 @@
 package com.Pages;
 
+import com.utility.BrowserUtils;
+import com.utility.ConfigurationReader;
 import com.utility.Driver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -19,5 +21,13 @@ public class LoginPage {
     @FindBy (css = "button[class='button is-dark']")
     public WebElement signInButton;
 
+    public void logInToBookIt(){
 
+        Driver.getDriver().get(ConfigurationReader.getProperty("bookItUrl"));
+        emailInput.sendKeys(ConfigurationReader.getProperty("usernameBIT"));
+        passwordInput.sendKeys(ConfigurationReader.getProperty("passwordBIT"));
+        BrowserUtils.wait(2);
+        signInButton.click();
+
+    }
 }

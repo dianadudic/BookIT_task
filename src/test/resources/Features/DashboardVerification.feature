@@ -1,5 +1,23 @@
-Feature: As a User I should able to see rooms on the dashboard
+Feature: As a user, I should be able to see list off all rooms on Dashboard
 
-  Scenario: User can see all the rooms
-    Given user is on dashboard
-    Then user should be able to see following rooms
+  @dashboard
+  Scenario: User can see list of all rooms
+    Given User is on dashboard
+    Then User can see all rooms
+      | ocean view    |
+      | kuzzat's cave |
+      | 4stay         |
+      | study area    |
+      | kitchen       |
+      | lobby         |
+      | kilimanjaro   |
+      | half dome     |
+      | denali        |
+      | meru          |
+
+
+
+
+
+
+
