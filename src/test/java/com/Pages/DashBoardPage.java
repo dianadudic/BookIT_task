@@ -28,5 +28,8 @@ public class DashBoardPage{
     @FindBy(xpath = "//div[@class='navbar-menu is-transparent']/div[1]/div[2]/div/a[1]")
     public WebElement myDropdown_Self;
 
+    @FindBy(xpath = "//a[@href='/team']")
+    public WebElement myDropdown_Team;
+
 
 }
