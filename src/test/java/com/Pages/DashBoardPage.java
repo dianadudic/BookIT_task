@@ -22,6 +22,11 @@ public class DashBoardPage{
     @FindBy(xpath = "//span[contains(@class,'room-name')]")
     public List<WebElement> Rooms;
 
+    @FindBy(xpath = "//div[@class='navbar-menu is-transparent']/div[1]/div[2]")
+    public WebElement myDropdown;
+
+    @FindBy(xpath = "//div[@class='navbar-menu is-transparent']/div[1]/div[2]/div/a[1]")
+    public WebElement myDropdown_Self;
 
 
 }
