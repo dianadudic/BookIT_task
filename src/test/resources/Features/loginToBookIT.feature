@@ -1,7 +1,7 @@
 Feature: user login to BookIT
 
 
-  @login
+  @login @smoke
   Scenario Outline: User should able to login to BookIT App
     Given user is on the login page
     When user enters "<username>" and "<password>"
