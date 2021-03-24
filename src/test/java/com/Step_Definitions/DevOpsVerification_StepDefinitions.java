@@ -7,12 +7,14 @@ import com.utility.DB_Utility;
 import com.utility.Driver;
 import io.cucumber.java.en.Then;
 import io.github.bonigarcia.wdm.WebDriverManager;
+import org.junit.Assert;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 public class DevOpsVerification_StepDefinitions {
@@ -39,19 +41,54 @@ public class DevOpsVerification_StepDefinitions {
         DB_Utility.createConnection();
         DB_Utility.runQuery("select firstname, role\n" +
                 "from users\n" +
-                "where firstname in  ( 'Tabor' ,'Ola','Donia','Opal')\n" +
-                "order by (case  firstname when 'Tabor' then 1 when 'Ola' then 2 when 'Donia' then 3 when 'Opal' then 4 ELSE 100 END )asc");
+                "where lastname in  ( 'Dullingham' ,'Grills','Fisby','Cave')\n" +
+                "order by (case  firstname when 'Dullingham' then 1 when 'Grills' then 2 when 'Fisby' then 3 when 'Cave' then 4 ELSE 100 END )asc ;");
 
+        List<String> devOpsMemberName = new ArrayList<>();
 
-
-        System.out.println("DB_Utility.getAllRowAsListOfMap() = " + DB_Utility.getAllRowAsListOfMap());
-
-        List<String> listOfMembers = new ArrayList<>();
-        for (WebElement eachMember: team_page.devopsTeam){
-            listOfMembers.add(eachMember.getText());
+        for(WebElement eachName : team_page.teamMembersName){
+            devOpsMemberName.add(eachName.getText());
+            Collections.sort(devOpsMemberName);
         }
+        System.out.println("devOpsMemberName = " + devOpsMemberName);
 
-        System.out.println("listOfMembers = " + listOfMembers);
+
+        List<String> devOpsMemberRole = new ArrayList<>();
+
+        for(WebElement eachRole : team_page.teamMembersRole){
+            devOpsMemberRole.add(eachRole.getText());
+            Collections.sort(devOpsMemberRole);
+        }
+        System.out.println("devOpsMemberRole = " + devOpsMemberRole);
+
+
+        System.out.println("=================================================================");
+
+
+        List<String> memberNameBySql = new ArrayList<>();
+
+       for(String nameFromSql : DB_Utility.getColumnDataAsList(1)){
+           memberNameBySql.add(nameFromSql);
+           Collections.sort(memberNameBySql);
+       }
+        System.out.println("memberNameBySql = " + memberNameBySql);
+
+
+       List<String> memberRoleBySql = new ArrayList<>();
+
+       for (String roleFromSql : DB_Utility.getColumnDataAsList(2)) {
+           memberRoleBySql.add(roleFromSql);
+           Collections.sort(memberRoleBySql);
+       }
+        System.out.println("memberRoleBySql = " + memberRoleBySql);
+
+        Assert.assertTrue(devOpsMemberName.equals(memberNameBySql));
+
+        Assert.assertTrue(devOpsMemberRole.equals(memberRoleBySql));
+
+
+
+
 
     }
 
